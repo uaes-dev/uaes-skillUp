@@ -1,0 +1,126 @@
+/* General Page Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-image: url(images.jpg);
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Login Container */
+.login-container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+}
+
+/* Heading */
+h2 {
+    color: #333;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+/* Input Group */
+.input-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Password Input with Eye Icon */
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-container input {
+    width: 100%;
+    padding-right: 40px;
+}
+
+.eye-icon {
+    width: 18px;
+    height: 18px;
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+}
+
+/* Remember Me & Forgot Password */
+.remember-forgot {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.remember-forgot a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.remember-forgot a:hover {
+    text-decoration: underline;
+}
+
+/* Login Button */
+button {
+    width: 100%;
+    background: #007bff;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease-in-out;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+/* Error Message */
+#login-error {
+    color: red;
+    font-size: 14px;
+    font-weight: bold;
+    display: none;
+    margin-top: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .login-container {
+        width: 95%;
+        padding: 20px;
+    }
+
+    input, button {
+        font-size: 14px;
+        padding: 10px;
+    }
+}

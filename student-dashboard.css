@@ -1,0 +1,380 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+}
+
+/* Dashboard Container */
+.dashboard-container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar Navigation */
+.sidebar {
+    width: 250px;
+    background-color: #2c3e50;
+    color: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar h2 {
+    font-size: 20px;
+    text-align: center;
+    border-bottom: 2px solid white;
+    padding-bottom: 10px;
+}
+
+.sidebar a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+    display: block;
+}
+
+.sidebar a:hover {
+    background: #34495e;
+    cursor: pointer;
+}
+
+/* Content Area */
+.content {
+    flex-grow: 1;
+    padding: 20px;
+    background-image: url(content.avif);
+    overflow-y: auto;
+}
+
+/* Section Styles */
+.section {
+    display: none;
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.section.active {
+    display: block;
+}
+
+/* Buttons */
+button {
+    background-color: #2980b9;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background-color: #1f6690;
+}
+
+/* List Styling */
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+ul li {
+    background: #ecf0f1;
+    margin: 5px 0;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dashboard-container {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        text-align: center;
+    }
+
+    .sidebar a {
+        display: inline-block;
+        margin: 5px;
+    }
+}
+
+/* Skill Selection */
+#skill-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+#skill-options label {
+    background: #ecf0f1;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+#skill-options input {
+    cursor: pointer;
+}
+
+#updated-skills-list {
+    list-style: none;
+    padding: 0;
+}
+
+#updated-skills-list li {
+    background: #2ecc71;
+    color: white;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 5px;
+    text-align: center;
+}
+/* Skill Schedule Table */
+#schedule-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+#schedule-table th, #schedule-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+#schedule-table th {
+    background-color: #2c3e50;
+    color: white;
+}
+
+#schedule-table td {
+    background-color: #ecf0f1;
+}
+/* Profile Section Styling */
+.profile-container {
+    display: flex;
+    align-items: center;
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+}
+
+.profile-photo img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #3498db;
+    margin-right: 20px;
+}
+
+.profile-details p {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+.print-profile button {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.print-profile button:hover {
+    background: #2980b9;
+}
+ body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #18b0e7;
+        }
+
+        .dashboard-container {
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: #333;
+            color: white;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+        }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 10px;
+            margin: 5px 0;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .sidebar a:hover {
+            background: #575757;
+        }
+
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        .dashboard-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .dashboard-card i {
+            font-size: 40px;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        .dashboard-card h3 {
+            font-size: 18px;
+            color: #333;
+        }
+
+        .dashboard-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+        /* Community Forum Styling */
+#forum-section {
+    padding: 20px;
+    background: #f4f4f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.forum-container {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.forum-title {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.forum-messages {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    background: #fff;
+}
+
+.message {
+    padding: 8px;
+    border-bottom: 1px solid #eee;
+}
+
+.message:last-child {
+    border-bottom: none;
+}
+
+.message strong {
+    color: #007bff;
+}
+
+.forum-input {
+    display: flex;
+    margin-top: 10px;
+}
+
+.forum-input input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.forum-input button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    margin-left: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.forum-input button:hover {
+    background: #0056b3;
+}
+.back-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 14px;
+    display: inline-block;
+    transition: background 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #0056b3;
+}
+

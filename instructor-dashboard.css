@@ -1,0 +1,90 @@
+ /* Custom Background */
+ body {
+    background: linear-gradient(to right, #00467F, #A5CC82);
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 250px;
+    background: #002F4B;
+    min-height: 100vh;
+    padding: 20px;
+    position: fixed;
+}
+
+.sidebar h2 {
+    color: #A5CC82;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 12px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.sidebar ul li:hover {
+    background: #A5CC82;
+    color: #002F4B;
+    font-weight: bold;
+}
+
+/* Content Section */
+.content {
+    margin-left: 270px;
+    padding: 40px;
+}
+
+.section {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.section.active {
+    display: block;
+}
+
+/* Image & Text Layout */
+.dashboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.dashboard-header img {
+    max-width: 150px;
+    border-radius: 10px;
+}
+
+/* Button & Input Styling */
+.btn-custom {
+    background: #A5CC82;
+    color: #002F4B;
+    transition: 0.3s;
+}
+
+.btn-custom:hover {
+    background: #002F4B;
+    color: #A5CC82;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

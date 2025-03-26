@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Instructor Registration</title>
+    <link rel="stylesheet" href="instructor-reg.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2>Instructor Registration</h2>
+
+        <form id="instructor-form">
+            <label for="full-name">Full Name:</label>
+            <input type="text" id="full-name" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+
+            <label for="skill">Skill Specification:</label>
+            <input type="text" id="skill" required>
+
+            <label for="password">Create Password:</label>
+            <div class="password-container">
+                <input type="password" id="password" required>
+                <img src="eye-off.png" id="toggle-password" class="eye-icon">
+            </div>
+            <p id="password-error" class="error-message"></p>
+
+            <label for="confirm-password">Confirm Password:</label>
+            <div class="password-container">
+                <input type="password" id="confirm-password" required>
+                <img src="eye-off.png" id="toggle-confirm-password" class="eye-icon">
+            </div>
+            <p id="confirm-password-error" class="error-message"></p>
+
+            <button type="submit">Register</button>
+            <p id="success-message" class="success-message" style="display: none; color: green;">Registration Successful!</p>
+        </form>
+    </div>
+
+    <script>
+        // Password toggle functionality
+        document.getElementById("toggle-password").addEventListener("click", function() {
+            let passwordField = document.getElementById("password");
+            passwordField.type = passwordField.type === "password" ? "text" : "password";
+            this.src = passwordField.type === "text" ? "eye-on.png" : "eye-off.png";
+        });
+
+        document.getElementById("toggle-confirm-password").addEventListener("click", function() {
+            let confirmPasswordField = document.getElementById("confirm-password");
+            confirmPasswordField.type = confirmPasswordField.type === "password" ? "text" : "password";
+            this.src = confirmPasswordField.type === "text" ? "eye-on.png" : "eye-off.png";
+        });
+
+        // Form submission
+        document.getElementById("instructor-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let fullName = document.getElementById("full-name").value.trim();
+            let phone = document.getElementById("phone").value.trim();
+            let email = document.getElementById("email").value.trim().toLowerCase();
+            let skill = document.getElementById("skill").value.trim();
+            let password = document.getElementById("password").value.trim();
+            let confirmPassword = document.getElementById("confirm-password").value.trim();
+
+            // Password validation removed - Allows any characters
+            if (password.length < 6) {
+                document.getElementById("password-error").textContent = "Password must be at least 6 characters.";
+                return;
+            } else {
+                document.getElementById("password-error").textContent = "";
+            }
+
+            if (password !== confirmPassword) {
+                document.getElementById("confirm-password-error").textContent = "Passwords do not match.";
+                return;
+            } else {
+                document.getElementById("confirm-password-error").textContent = "";
+            }
+
+            // Retrieve existing instructors from localStorage
+            let instructors = JSON.parse(localStorage.getItem("instructors")) || [];
+
+            // Add the new instructor
+            let newInstructor = { fullName, phone, email, skill, password };
+            instructors.push(newInstructor);
+
+            // Store updated instructors list in localStorage
+            localStorage.setItem("instructors", JSON.stringify(instructors));
+
+            // Store email & password separately for login
+            localStorage.setItem("instructorEmail", email);
+            localStorage.setItem("instructorPassword", password);
+
+            // Show success message
+            document.getElementById("success-message").style.display = "block";
+
+            // Redirect after delay
+            setTimeout(() => {
+                window.location.href = "instructor-dashboard.html";
+            }, 1500);
+        });
+    </script>
+
+</body>
+</html>

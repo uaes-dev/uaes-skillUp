@@ -1,0 +1,64 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.dashboard-container {
+    width: 80%;
+    max-width: 500px;
+    background: white;
+    margin: 50px auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+.profile-card {
+    text-align: left;
+    padding: 20px;
+}
+
+/* Move passport image to the top */
+#passport-photo {
+    display: block;
+    margin: 0 auto 15px; /* Moves passport up with spacing below */
+}
+
+h2 {
+    color: #333;
+}
+
+h3 {
+    text-align: center;
+    color: #007BFF;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background: #e7f0fd;
+    margin: 5px 0;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+button {
+    background: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+button:hover {
+    background: #0056b3;
+}

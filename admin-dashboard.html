@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="admin.css">
+    
+</head>
+<body>
+
+    <!-- Sidebar Navigation -->
+    <div class="sidebar">
+        <h2>Admin Panel</h2>
+        <ul>
+            <li><a href="#" onclick="showSection('dashboard')">Dashboard</a></li>
+            <li><a href="#" onclick="showSection('students')">Manage Students</a></li>
+            <li><a href="#" onclick="showSection('instructors')">Manage Instructors</a></li>
+            <li><a href="#" onclick="showSection('skills')">Manage Skills</a></li>
+            <li><a href="#" onclick="showSection('allocation')">Skill Allocation</a></li>
+            <li><a href="#" onclick="showSection('schedule')">Schedules</a></li>
+            <li><a href="#" onclick="showSection('settings')">System Settings</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <header>
+            <h1>Admin Dashboard</h1>
+            <button onclick="logout()">Logout</button>
+        </header>
+
+        <section id="dashboard">
+            <h2>Dashboard Overview</h2>
+            <div class="stats">
+                <div class="card">Total Students: <span id="totalStudents">0</span></div>
+                <div class="card">Total Instructors: <span id="totalInstructors">0</span></div>
+                <div class="card">Popular Skills: <span id="popularSkills">-</span></div>
+            </div>
+        </section>
+
+        <section id="students" class="hidden">
+            <h2>Manage Students</h2>
+            <table id="studentTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Skills</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+
+        <section id="instructors" class="hidden">
+            <h2>Manage Instructors</h2>
+            <table id="instructorTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Assigned Skills</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </section>
+
+        <section id="skills" class="hidden">
+            <h2>Manage Skills</h2>
+            <input type="text" id="newSkill" placeholder="Enter skill">
+            <button onclick="addSkill()">Add Skill</button>
+            <ul id="skillList"></ul>
+        </section>
+
+        <section id="allocation" class="hidden">
+            <h2>Skill Allocation</h2>
+            <p>Assign students to instructors based on skills.</p>
+        </section>
+
+        <section id="schedule" class="hidden">
+            <h2>Schedules</h2>
+            <p>Tuesday 2:30 PM - 4:30 PM</p>
+        </section>
+
+        <section id="settings" class="hidden">
+            <h2>System Settings</h2>
+            <p>Manage system configurations.</p>
+        </section>
+    </div>
+
+    <script>
+        // Function to switch between sections
+function showSection(section) {
+    document.querySelectorAll("section").forEach(sec => sec.classList.add("hidden"));
+    document.getElementById(section).classList.remove("hidden");
+}
+
+// Function to load student data from localStorage
+function loadStudents() {
+    let students = JSON.parse(localStorage.getItem("students")) || [];
+    let tableBody = document.querySelector("#studentTable tbody");
+    tableBody.innerHTML = "";
+
+    students.forEach((student, index) => {
+        let row = `<tr>
+            <td>${student.name}</td>
+            <td>${student.email}</td>
+            <td>${student.skills.join(", ")}</td>
+            <td>
+                <button onclick="deleteStudent(${index})">Delete</button>
+            </td>
+        </tr>`;
+        tableBody.innerHTML += row;
+    });
+
+    document.getElementById("totalStudents").innerText = students.length;
+}
+
+// Function to delete a student
+function deleteStudent(index) {
+    let students = JSON.parse(localStorage.getItem("students")) || [];
+    students.splice(index, 1);
+    localStorage.setItem("students", JSON.stringify(students));
+    loadStudents();
+}
+
+// Function to log out
+function logout() {
+    window.location.href = "index.html";
+}
+
+// Load students on page load
+window.onload = loadStudents;
+
+    </script>
+
+</body>
+</html>

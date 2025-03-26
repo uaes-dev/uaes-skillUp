@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instructor Login</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="instructor-login.css">
+</head>
+<body>
+
+    <div class="login-container">
+        <h2><i class="fas fa-chalkboard-teacher"></i> Instructor Login</h2>
+        <p class="text-muted">Access your dashboard</p>
+        
+        <div class="alert alert-danger d-none" id="error-message"></div>
+
+        <form id="loginForm">
+            <div class="mb-3">
+                <label for="email" class="form-label"><i class="fas fa-envelope"></i> Email</label>
+                <input type="email" id="email" class="form-control" placeholder="Enter email" required>
+            </div>
+
+            <div class="mb-3 position-relative">
+                <label for="password" class="form-label"><i class="fas fa-lock"></i> Password</label>
+                <input type="password" id="password" class="form-control" placeholder="Enter password" required>
+                <i class="fas fa-eye toggle-password" onclick="togglePassword()"></i>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100"><i class="fas fa-sign-in-alt"></i> Login</button>
+        </form>
+
+        <div class="text-center mt-3">
+            <a href="forgot-password.html">Forgot Password?</a>
+        </div>
+    </div>
+
+    <script>
+        function togglePassword() {
+            let passwordField = document.getElementById("password");
+            let icon = document.querySelector(".toggle-password");
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                icon.classList.replace("fa-eye", "fa-eye-slash");
+            } else {
+                passwordField.type = "password";
+                icon.classList.replace("fa-eye-slash", "fa-eye");
+            }
+        }
+    
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+    
+            let email = document.getElementById("email").value.trim().toLowerCase();
+            let password = document.getElementById("password").value.trim();
+            let errorMessage = document.getElementById("error-message");
+    
+            // Predefined Instructor Details
+            const instructor = {
+                fullName: "Stan",
+                phonenumber: "09126284434",
+                email: "instructor@gmail.com",
+                skillSpecification : "Web Design",
+                password: "instructor123"
+            };
+    
+            if (email === instructor.email && password === instructor.password) {
+                // Store instructor details in localStorage for the dashboard
+                localStorage.setItem("loggedInInstructor", JSON.stringify(instructor));
+                window.location.href = "instructor-dashboard.html"; 
+            } else {
+                errorMessage.textContent = "Invalid email or password!";
+                errorMessage.classList.remove("d-none");
+            }
+        });
+    </script>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

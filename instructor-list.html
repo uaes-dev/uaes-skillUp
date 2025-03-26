@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Instructor List</title>
+    <link rel="stylesheet" href="instructor-list.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2>Instructor List</h2>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Full Name</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+                    <th>Skill Specification</th>
+                </tr>
+            </thead>
+            <tbody id="instructor-table">
+                <!-- Instructors will be loaded here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        // Load instructor details from localStorage
+        function loadInstructors() {
+            let instructors = JSON.parse(localStorage.getItem("instructors")) || [];
+            let tableBody = document.getElementById("instructor-table");
+
+            if (instructors.length === 0) {
+                tableBody.innerHTML = "<tr><td colspan='4'>No instructors registered yet.</td></tr>";
+            } else {
+                tableBody.innerHTML = "";
+                instructors.forEach(instructor => {
+                    let row = `<tr>
+                        <td>${instructor.fullName}</td>
+                        <td>${instructor.phone}</td>
+                        <td>${instructor.email}</td>
+                        <td>${instructor.skill}</td>
+                    </tr>`;
+                    tableBody.innerHTML += row;
+                });
+            }
+        }
+
+        // Call the function when the page loads
+        window.onload = loadInstructors;
+    </script>
+
+</body>
+</html>

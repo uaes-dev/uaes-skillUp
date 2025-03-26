@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2>Student Profile</h2>
+        
+        <p><strong>Full Name:</strong> <span id="full-name"></span></p>
+        <p><strong>Email:</strong> <span id="email"></span></p>
+        <p><strong>Matric Number:</strong> <span id="matric"></span></p>
+        <p><strong>Department:</strong> <span id="department"></span></p>
+        <p><strong>Level:</strong> <span id="level"></span></p>
+        <p><strong>Skills:</strong> <span id="skills"></span></p>
+
+        <button onclick="window.print()">Print Profile</button>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("full-name").innerText = localStorage.getItem("fullName") || "N/A";
+            document.getElementById("email").innerText = localStorage.getItem("email") || "N/A";
+            document.getElementById("matric").innerText = localStorage.getItem("matric") || "N/A";
+            document.getElementById("department").innerText = localStorage.getItem("department") || "N/A";
+            document.getElementById("level").innerText = localStorage.getItem("level") || "N/A";
+
+            let skills = JSON.parse(localStorage.getItem("skills")) || [];
+            document.getElementById("skills").innerText = skills.length ? skills.join(", ") : "N/A";
+        });
+    </script>
+
+</body>
+</html>

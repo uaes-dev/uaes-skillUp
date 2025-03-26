@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration</title>
+    <link rel="stylesheet" href="student-registration.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2>Student Registration</h2>
+
+        <form id="registration-form">
+            <label for="full-name">Full Name:</label>
+            <input type="text" id="full-name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+
+            <label for="matric">Matric Number:</label>
+            <input type="text" id="matric" required>
+
+            <label for="department">Department:</label>
+            <input type="text" id="department" required>
+
+            <label for="level">Level:</label>
+            <select id="level" required>
+                <option value="100">100 Level</option>
+                <option value="200">200 Level</option>
+                <option value="300">300 Level</option>
+                <option value="400">400 Level</option>
+                <option value="500">500 Level</option>
+            </select>
+
+            <label for="password">Create Password:</label>
+            <div class="password-container">
+                <input type="password" id="password" required>
+                <img id="toggle-password" src="eye-off.png" alt="Show Password" class="toggle-icon">
+            </div>
+
+            <label for="confirm-password">Confirm Password:</label>
+            <div class="password-container">
+                <input type="password" id="confirm-password" required>
+                <img id="toggle-confirm-password" src="eye-off.png" alt="Show Password" class="toggle-icon">
+            </div>
+            <p id="password-error" style="color: red; font-size: 14px; display: none;"></p>
+
+            <label>Select exactly 3 skills:</label>
+            <div id="skills-container">
+                <div class="skill"><input type="checkbox" name="skills" value="Web Design"> Web Design</div>
+                <div class="skill"><input type="checkbox" name="skills" value="Graphic Design"> Graphic Design</div>
+                <div class="skill"><input type="checkbox" name="skills" value="Paint Production"> Paint Production</div>
+                <div class="skill"><input type="checkbox" name="skills" value="Perfume Making"> Perfume Making</div>
+                <div class="skill"><input type="checkbox" name="skills" value="CCTV Installation and Maintenance"> CCTV Installation</div>
+                <div class="skill"><input type="checkbox" name="skills" value="Soap Making"> Soap Making</div>
+                <div class="skill"><input type="checkbox" name="skills" value="Barbing"> Barbing</div>
+            </div>
+
+            <p id="skill-error" style="color: red; font-size: 14px; display: none;"></p>
+
+            <button type="submit">Register</button>
+
+            <p id="success-message" style="display: none; color: green; font-weight: bold; text-align: center;"></p>
+        </form>
+    </div>
+
+    <script>
+        // Password Toggle Functionality
+        function setupPasswordToggle(toggleId, inputId) {
+            document.getElementById(toggleId).addEventListener("click", function () {
+                let inputField = document.getElementById(inputId);
+                this.src = inputField.type === "password" ? "eye-on.png" : "eye-off.png";
+                inputField.type = inputField.type === "password" ? "text" : "password";
+            });
+        }
+
+        setupPasswordToggle("toggle-password", "password");
+        setupPasswordToggle("toggle-confirm-password", "confirm-password");
+
+        // Skill Selection Control (Max 3)
+        document.querySelectorAll('input[name="skills"]').forEach(skill => {
+            skill.addEventListener("change", function () {
+                let checkedSkills = document.querySelectorAll('input[name="skills"]:checked');
+
+                if (checkedSkills.length > 3) {
+                    this.checked = false;
+                    document.getElementById("skill-error").textContent = "You can only select exactly 3 skills.";
+                    document.getElementById("skill-error").style.display = "block";
+                } else {
+                    document.getElementById("skill-error").style.display = "none";
+                }
+            });
+        });
+
+        // Form Submission
+        document.getElementById("registration-form").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            let fullName = document.getElementById("full-name").value;
+            let email = document.getElementById("email").value;
+            let matric = document.getElementById("matric").value;
+            let department = document.getElementById("department").value;
+            let level = document.getElementById("level").value;
+            let password = document.getElementById("password").value;
+            let confirmPassword = document.getElementById("confirm-password").value;
+
+            // Validate password match
+            if (password !== confirmPassword) {
+                document.getElementById("password-error").textContent = "Passwords do not match!";
+                document.getElementById("password-error").style.display = "block";
+                return;
+            }
+
+            // Validate skill selection (exactly 3)
+            let selectedSkills = [];
+            let checkboxes = document.querySelectorAll("input[name='skills']:checked");
+
+            checkboxes.forEach((checkbox) => {
+                if (selectedSkills.length < 3) {
+                    selectedSkills.push(checkbox.value);
+                }
+            });
+
+            if (selectedSkills.length !== 3) {
+                alert("Please select exactly 3 skills.");
+                return;
+            }
+
+            // Store data in localStorage
+            let studentData = {
+                fullName, email, matric, department, level, skills: selectedSkills, password
+            };
+
+            localStorage.setItem("loggedInStudent", JSON.stringify(studentData));
+
+            alert("Registration Successful! Redirecting to Dashboard...");
+            setTimeout(() => {
+                window.location.href = "student-dashboard.html";
+            }, 500);
+        });
+    </script>
+
+   
+      
+</body>
+</html>

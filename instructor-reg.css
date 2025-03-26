@@ -1,0 +1,100 @@
+/* General Page Styles */
+body {
+    font-family: Arial, sans-serif;
+    background: url('ab.jpg') no-repeat center center;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Container */
+.container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 450px;
+}
+
+/* Heading */
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+/* Labels */
+label {
+    font-weight: bold;
+    display: block;
+    margin-top: 10px;
+}
+
+/* Input Fields */
+input {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Profile Photo Preview */
+#photo-preview {
+    display: none;
+    width: 100px;
+    height: 100px;
+    margin-top: 10px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Button */
+button {
+    width: 100%;
+    background: #007bff;
+    color: white;
+    padding: 12px;
+    border: none;
+    border-radius: 5px;
+    margin-top: 15px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease-in-out;
+}
+
+button:hover {
+    background: #0056b3;
+}
+
+/* Responsive Design */
+@media (max-width: 480px) {
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    input, button {
+        font-size: 14px;
+        padding: 10px;
+    }
+}
+.password-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.eye-icon {
+    width: 20px;  /* Adjusted size */
+    height: 20px;
+    position: absolute;
+    right: 10px;  /* Keeps it inside the input */
+    cursor: pointer;
+}

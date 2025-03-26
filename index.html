@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UAES Entrepreneurship Hub</title>
+    <link rel="stylesheet" href="indexstyle.css">
+    
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<!-- Navigation Bar -->
+<nav class="navbar">
+    <div class="nav-left">
+        <img src="logo1.png" alt="UAES Logo" class="logo">  <!-- Logo on the left -->
+        <span class="nav-title">UNIVERSITY OF AGRICULTURE AND ENVIRONMENTAL SCIENCES, UMUAGWO</span>
+    </div>
+
+        
+        <!-- Menu Container -->
+        <div class="menu-container">
+            <div class="menu-icon" onclick="toggleMenu()">&#9776;</div> <!-- Menu icon -->
+            <ul class="dropdown-menu">
+                <li><a href="https://uaes.edu.ng/news#" target="_blank">Events</a></li>
+                <li><a href="https://uaes.edu.ng/home/contact" target="_blank">Contact Us</a></li>
+                <li><a href="https://www.uaes.edu.ng/home/ourhistory" target="_blank">History of UAES</a></li>
+                <li><a href="https://www.marlborough.org/news/~board/stem/post/five-benefits-of-entrepreneurship-education-to-students" target="_blank">Benefits of Entrepreneurship</a></li>
+                <li><a href="admin-login.html">Admin</a></li>
+
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to <br> UAES Entrepreneurship Hub</h1>
+            <p>Find the skills you want to learn or register as a facilitator to teach others.</p>
+            
+            <div class="register-buttons">
+                <a href="student-registration.html"><button class="student">Register as a Student</button></a>
+                <a href="instructor-registration.html"><button class="instructor">Register as a Facilitator</button></a>
+
+                <div class="login-section">
+                    <p>Have you registered?</p>
+                    <a href="student-login.html"><button class="login">Student Login</button></a>
+                    <a href="instructor-login.html"><button class="login">Instructor Login</button></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        &copy; 2025 UAES Computer Science/Information Technology (2026 set). All rights reserved.
+    </footer>
+
+    <!-- Script for Dropdown Menu -->
+    <script>
+        function toggleMenu() {
+            var menuContainer = document.querySelector(".menu-container");
+            menuContainer.classList.toggle("active");
+        }
+
+        // Close menu when clicking outside
+        document.addEventListener("click", function(event) {
+            var menuContainer = document.querySelector(".menu-container");
+            var menuIcon = document.querySelector(".menu-icon");
+
+            if (!menuContainer.contains(event.target) && !menuIcon.contains(event.target)) {
+                menuContainer.classList.remove("active");
+            }
+        });
+    </script>
+
+</body>
+</html>

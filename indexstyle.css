@@ -1,0 +1,211 @@
+/* Reset and General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    text-align: center;
+}
+
+/* Navigation Bar */
+.navbar {
+    background-color:whitesmoke;
+    display: flex;
+    justify-content: space-between; /* Left and right alignment */
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adds shadow */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+/* Left section of Navbar (Logo & Title) */
+.nav-left {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    height: 80px; /* Adjust logo size */
+    margin-right: 10px;
+}
+
+.nav-title {
+    font-size: 40px;
+    font-weight: bold;
+    color: green;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+/* Menu Container */
+.menu-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+/* Menu Icon */
+.menu-icon {
+    font-size: 30px; /* Bigger icon */
+    cursor: pointer;
+    color: black;
+    padding: 10px;
+    display: block; /* Ensures it's visible */
+    margin: 30px;
+   
+}
+/* Dropdown Menu */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    padding: 10px;
+    min-width: 200px;
+    z-index: 100;
+}
+
+/* Show dropdown when active */
+.menu-container.active .dropdown-menu {
+    display: block;
+}
+
+/* Dropdown items */
+.dropdown-menu li {
+    display: block;
+    padding: 10px;
+    text-align: left;
+}
+
+.dropdown-menu li a {
+    font-weight: bold;
+    color: #f1c40f;
+}
+
+.dropdown-menu li a:hover {
+   
+    border-radius: 5px;
+   
+    color: #fff;
+    background-color: #f39c12;
+}
+
+/* Hero Section */
+.hero {
+    background-image: url(abcdc.jpg);
+
+    color: white;
+    padding: 50px 20px;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 80px; /* Prevents content from overlapping navbar */
+}
+
+.hero-content {
+    background-color: #042a4d;
+    padding: 20px;
+    border-radius: 20px;
+}
+
+.hero-content h1 {
+    font-size: 50px;
+    margin-bottom: 10px;
+}
+
+.hero-content p {
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+/* Buttons */
+.register-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 250px;
+    transition: 0.3s;
+    border: none;
+}
+
+/* Student Button */
+.student {
+    background-color: rgb(24, 219, 50);
+    color: black;
+    border: 2px solid white;
+    position: relative;
+    z-index: 2; /* Ensures student button is on top */
+}
+
+/* Instructor Button */
+.instructor {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    position: relative;
+    margin-top: -20px; /* Adjust for more overlap */
+    z-index: 1; /* Ensures it stays under the student button */
+}
+
+
+button:hover {
+    opacity: 0.8;
+}
+
+/* Footer */
+.footer {
+    background: #222;
+    color: white;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hero-content {
+        text-align: center;
+    }
+
+    .register-buttons {
+        flex-direction: column;
+    }
+
+    button {
+        width: 90%;
+    }
+
+    /* Make dropdown menu full-width for mobile */
+    .dropdown-menu {
+        width: 100%;
+        right: 0;
+        left: 0;
+    }
+}
+nav ul li a[href="admin.html"] {
+    font-weight: bold;
+    color: #f1c40f;
+}
+
+nav ul li a[href="admin.html"]:hover {
+    color: #fff;
+    background-color: #f39c12;
+}
+
