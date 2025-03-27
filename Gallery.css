@@ -7,7 +7,9 @@ body {
     height: 100vh;
     margin: 0;
 }
-
+#h1{
+    font-size: 40px;
+}
 .gallery-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
