@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Student Login</title>
     <link rel="stylesheet" href="student-login.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+
+    
     <style>
         /* Ensure eye icon is well positioned */
         .password-container {
@@ -38,10 +42,11 @@
 
             <div class="input-group">
                 <label for="password">Enter your Password</label>
-                <div class="password-container">
-                    <input type="password" id="password" name="password" placeholder="Enter your Password" required>
-                    <img src="eye-off.png" id="togglePassword" class="eye-icon" alt="Show Password">
-                </div>
+               <div class="password-container">
+    <input type="password" id="password" name="password" placeholder="Enter your Password" required>
+    <i class="fa-solid fa-eye eye-icon" id="togglePassword"></i>
+</div>
+
             </div>
 
             <div class="remember-forgot">
@@ -55,18 +60,21 @@
     </div>
 
     <script>
-        function togglePassword() {
-            let passwordField = document.getElementById("password");
-            let icon = document.querySelector(".toggle-password");
-            if (passwordField.type === "password") {
-                passwordField.type = "text";
-                icon.classList.replace("fa-eye", "fa-eye-slash");
-            } else {
-                passwordField.type = "password";
-                icon.classList.replace("fa-eye-slash", "fa-eye");
-            }
+   <script>
+    document.getElementById("togglePassword").addEventListener("click", function () {
+        let passwordField = document.getElementById("password");
+        let icon = document.getElementById("togglePassword");
+
+        if (passwordField.type === "password") {
+            passwordField.type = "text";
+            icon.classList.replace("fa-eye", "fa-eye-slash"); // Change to "eye-off"
+        } else {
+            passwordField.type = "password";
+            icon.classList.replace("fa-eye-slash", "fa-eye"); // Change back to "eye-on"
         }
-    
+    });
+</script>
+
         document.getElementById("loginForm").addEventListener("submit", function(event) {
             event.preventDefault();
     
