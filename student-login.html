@@ -68,33 +68,46 @@
             }
         }
 
-        document.getElementById("loginForm").addEventListener("submit", function(event) {
-            event.preventDefault();
+     document.getElementById("loginForm").addEventListener("submit", function(event) {
+    event.preventDefault();
 
-            let email = document.getElementById("email").value.trim().toLowerCase();
-            let password = document.getElementById("password").value.trim();
-            let errorMessage = document.getElementById("login-error");
+    let email = document.getElementById("email").value.trim().toLowerCase();
+    let password = document.getElementById("password").value.trim();
+    let errorMessage = document.getElementById("login-error");
 
-            // Predefined Student Details
-            const student = {
-                fullName: "Samuel Osuji",
-                department: "Computer Science",
-                matric: "20221200021",
-                level: "300",
-                skills: ["Web Design", "Painting Making", "CCTV Installation"],
-                email: "student@gmail.com",
-                password: "student123"
-            };
+    // Predefined Student Details
+    const student = {
+        fullName: "Samuel Osuji",
+        department: "Computer Science",
+        matric: "20221200021",
+        level: "300",
+        skills: ["Web Design", "Painting Making", "Computer Networking"],
+        email: "student@gmail.com",
+        password: "student123"
+    };
 
-            if (email === student.email && password === student.password) {
-                // Store student details in localStorage for the dashboard
-                localStorage.setItem("loggedInStudent", JSON.stringify(student));
-                window.location.href = "student-dashboard.html"; 
-            } else {
-                errorMessage.textContent = "Invalid email or password!";
-                errorMessage.style.display = "block";
-            }
-        });
+    // Predefined Instructor Data
+    const instructors = [
+        { name: "Mr Iyke Oguoma", skill: "Web Design", email: "iyke@gmail.com" },
+        { name: "Mr Williams", skill: "Painting Making", email: "william@gmail.com" },
+        { name: "Mr Donald", skill: "Computer Networking", email: "donald@gmail.com" }
+    ];
+
+    if (email === student.email && password === student.password) {
+        // Find instructors for student's registered skills
+        let assignedInstructors = instructors.filter(instr => student.skills.includes(instr.skill));
+
+        // Store student & instructor details in localStorage for the dashboard
+        localStorage.setItem("loggedInStudent", JSON.stringify(student));
+        localStorage.setItem("assignedInstructors", JSON.stringify(assignedInstructors));
+
+        window.location.href = "student-dashboard.html"; 
+    } else {
+        errorMessage.textContent = "Invalid email or password!";
+        errorMessage.style.display = "block";
+    }
+});
+
     </script>
 </body>
 </html>
