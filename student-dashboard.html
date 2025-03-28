@@ -157,6 +157,20 @@
             </button>
         </section>
 
+         <section id="instructor-section" class="section">
+            <h2>Assigned Instructors</h2>
+        
+        <button onclick="showInstructorDetails()">Your Instructor</button>
+
+    <div id="instructor-details" style="display: none; margin-top: 20px;">
+        <h3>Assigned Instructor(s)</h3>
+        <ul id="instructor-list"></ul>
+    </div>
+              <button class="back-button" onclick="showSection('dashboard-home')">
+                ⬅ Back to Menu
+            </button>
+               </section>
+
        
 
         <section id="schedule-section" class="section">
@@ -283,6 +297,31 @@ function logoutUser() {
             skillsList.innerHTML = "<li>No skills selected.</li>";
         }
     }
+
+    document.addEventListener("DOMContentLoaded", function () {
+    let student = JSON.parse(localStorage.getItem("loggedInStudent"));
+    let instructors = JSON.parse(localStorage.getItem("assignedInstructors"));
+
+    if (student) {
+        document.getElementById("student-name").textContent = student.fullName;
+    }
+
+    window.showInstructorDetails = function () {
+        let instructorList = document.getElementById("instructor-list");
+        let instructorSection = document.getElementById("instructor-details");
+
+        if (instructors && instructors.length > 0) {
+            instructorList.innerHTML = instructors.map(instr => 
+                `<li><strong>${instr.name}</strong> - ${instr.skill} <br> 📧 ${instr.email}</li>`
+            ).join("");
+            instructorSection.style.display = "block";
+        } else {
+            instructorList.innerHTML = "<li>No instructor assigned.</li>";
+            instructorSection.style.display = "block";
+        }
+    };
+});
+
     
     // Function to Show/Hide Sections Dynamically
     function showSection(sectionId) {
