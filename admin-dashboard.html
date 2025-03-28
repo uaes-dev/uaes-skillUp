@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Panel</title>
     <link rel="stylesheet" href="admin.css">
-    
+
 </head>
 <body>
 
@@ -93,49 +93,14 @@
     </div>
 
     <script>
-        // Function to switch between sections
-function showSection(section) {
-    document.querySelectorAll("section").forEach(sec => sec.classList.add("hidden"));
-    document.getElementById(section).classList.remove("hidden");
-}
+        function showSection(section) {
+            document.querySelectorAll("section").forEach(sec => sec.classList.add("hidden"));
+            document.getElementById(section).classList.remove("hidden");
+        }
 
-// Function to load student data from localStorage
-function loadStudents() {
-    let students = JSON.parse(localStorage.getItem("students")) || [];
-    let tableBody = document.querySelector("#studentTable tbody");
-    tableBody.innerHTML = "";
-
-    students.forEach((student, index) => {
-        let row = `<tr>
-            <td>${student.name}</td>
-            <td>${student.email}</td>
-            <td>${student.skills.join(", ")}</td>
-            <td>
-                <button onclick="deleteStudent(${index})">Delete</button>
-            </td>
-        </tr>`;
-        tableBody.innerHTML += row;
-    });
-
-    document.getElementById("totalStudents").innerText = students.length;
-}
-
-// Function to delete a student
-function deleteStudent(index) {
-    let students = JSON.parse(localStorage.getItem("students")) || [];
-    students.splice(index, 1);
-    localStorage.setItem("students", JSON.stringify(students));
-    loadStudents();
-}
-
-// Function to log out
-function logout() {
-    window.location.href = "index.html";
-}
-
-// Load students on page load
-window.onload = loadStudents;
-
+        function logout() {
+            window.location.href = "index.html";
+        }
     </script>
 
 </body>
