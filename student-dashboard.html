@@ -24,8 +24,6 @@
         <a href="student-profile.html" target="_blank">
             <button>🖨️ Print Profile</button>
         </a>
-        <a href="#" onclick="logoutStudent()">🚪 Logout</a>
-
         
     </div>
 
@@ -140,11 +138,11 @@
 
             <div id="skill-options">
                 <label><input type="checkbox" value="Web Development"> Web Development</label>
-                <label><input type="checkbox" value="Footwear Production">Footwear Production</label>
-                <label><input type="checkbox" value="Paint Production">Paint Production</label>
-                <label><input type="checkbox" value="Confectionery"> Confectionery</label>
-                <label><input type="checkbox" value="Computer Networking">Computer Networking</label>
-               
+                <label><input type="checkbox" value="Graphic Design"> Graphic Design</label>
+                <label><input type="checkbox" value="Data Science"> Data Science</label>
+                <label><input type="checkbox" value="Cybersecurity"> Cybersecurity</label>
+                <label><input type="checkbox" value="AI & Machine Learning"> AI & Machine Learning</label>
+                <label><input type="checkbox" value="Mobile App Development"> Mobile App Development</label>
             </div>
 
             <button onclick="updateSkills()">Update Skills</button>
@@ -291,19 +289,13 @@
             loadSkills();
         }
     }
-    function logoutStudent() {
-    localStorage.removeItem("loggedInStudent"); // Clear student data
-    alert("You have been logged out.");
-    window.location.href = "index.html"; // Redirect to login page
-}
-
     
     // Load student name dynamically
     function displayStudentName() {
     const studentData = JSON.parse(localStorage.getItem("loggedInStudent"));
     
     if (studentData) {
-        document.getElementById("welcome-message").textContent = Welcome, ${studentData.fullName}!;
+        document.getElementById("welcome-message").textContent = `Welcome, ${studentData.fullName}!`;
     } else {
         alert("No student data found! Redirecting to login...");
         window.location.href = "student-login.html";
