@@ -6,349 +6,108 @@
     <title>Student Dashboard</title>
     <link rel="stylesheet" href="student-dashboard.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-
 </head>
 <body>
-
-<div class="dashboard-container">
-    <!-- Sidebar Navigation -->
-    <div class="sidebar">
-        <h2>Student Dashboard Menu</h2>
-        <a onclick="showSection('dashboard-home')">📊 Dashboard Overview</a>
-        <a onclick="showSection('results-section'); showResults()">📊 Check Results</a>
-        <a onclick="showSection('logbook-section')">📂 Download Logbook</a>
-        <a onclick="showSection('skills-section')">📜 Check Your Skills</a>
-        <a onclick="showSection('update-skills-section')">🛠️ Update Skills</a>
-        <a onclick="showSection('instructor-section')">👨‍🏫 Your Instructor</a>
-        <a onclick="showSection('schedule-section')">📅 Skill Schedules</a>
-        <a href="student-profile.html" target="_blank">
-            <button>🖨️ Print Profile</button>
-        </a>
-        <a onclick="logoutUser()" class="logout-button">🚪 Logout</a>
-    </div>
-
-    <!-- Content Area -->
-    <div class="content">
-   <!-- Dashboard Overview Section -->
-   <section id="dashboard-home" class="section active">
-    <h2 id="welcome-message">Welcome, Student!</h2>
-    <div class="dashboard-grid">
-        <div class="dashboard-card" onclick="showSection('messages-section')">
-            <i class="fas fa-envelope"></i>
-            <h3>Messages</h3>
-            
-        </div>
-        <div class="dashboard-card" onclick="showSection('library-section')">
-            <i class="fas fa-book"></i>
-            <h3>Resource Library</h3>
-        </div>
-        <div class="dashboard-card" onclick="showSection('assignments-section')">
-            <i class="fas fa-tasks"></i>
-            <h3>Assignments</h3>
-        </div>
-        <div class="dashboard-card" onclick="showSection('upload-section')">
-            <i class="fas fa-upload"></i>
-            <h3>Upload Assignments</h3>
-        </div>
-        <div class="dashboard-card" onclick="showSection('forum-section')">
-            <i class="fas fa-users"></i>
-            <h3>Community Forum</h3>
-        </div>
-    </div>
-    
-    
-</section>
-
-<!-- Sections for Each Feature -->
-<section id="messages-section" class="section">
-    <h2>Messages</h2>
-    <p>View and send messages here.</p>
-    <button class="back-button" onclick="showSection('dashboard-home')">
-        ⬅ Back to Dashboard
-</section>
-
-<section id="library-section" class="section">
-    <h2>Resource Library</h2>
-    <p>Access learning materials and documents.</p>
-    <button class="back-button" onclick="showSection('dashboard-home')">
-        ⬅ Back to Dashboard
-</section>
-
-<section id="assignments-section" class="section">
-    <h2>Assignments</h2>
-    <p>Check your assignments and due dates.</p>
-    <button class="back-button" onclick="showSection('dashboard-home')">
-        ⬅ Back to Dashboard
-</section>
-
-<section id="upload-section" class="section">
-    <h2>Upload Assignments</h2>
-    <input type="file">
-    <button>Upload</button>
-    <button class="back-button" onclick="showSection('dashboard-home')">
-        ⬅ Back to Dashboard
-</section>
-
-<section id="forum-section" class="section">
-    <h2 class="forum-title">Community Forum</h2>
-    <div class="forum-container">
-        <div id="forum-messages" class="forum-messages">
-            <!-- Messages will be loaded here dynamically -->
-        </div>
-        <div class="forum-input">
-            <input type="text" id="forum-message" placeholder="Type a message..." />
-            <button onclick="postMessage()">Send</button>
-        </div>
-    </div>
-    <button class="back-button" onclick="showSection('dashboard-home')">
-        ⬅ Back to Dashboard
-</section>
-
-
-
-        <section id="results-section" class="section">
-            <h2>Check Results</h2>
-            <p id="result-message"></p>
-            <button class="back-button" onclick="showSection('dashboard-home')">
-                ⬅ Back to Menu
-            </button>
-        </section>
-
-        <section id="logbook-section" class="section">
-            <h2>Download Logbook</h2>
-            <a href="logbook.pdf" download="LOG_BOOK_GST_ENT_301.pdf">
-                <button>Download Logbook</button>
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <h2>Student Dashboard Menu</h2>
+            <a onclick="showSection('dashboard-home')">📊 Dashboard Overview</a>
+            <a onclick="showSection('results-section'); showResults()">📊 Check Results</a>
+            <a onclick="showSection('logbook-section')">📂 Download Logbook</a>
+            <a onclick="showSection('skills-section')">📜 Check Your Skills</a>
+            <a onclick="showSection('update-skills-section')">🛠️ Update Skills</a>
+            <a onclick="showSection('instructor-section')">👨‍🏫 Your Instructor</a>
+            <a onclick="showSection('schedule-section')">📅 Skill Schedules</a>
+            <a href="student-profile.html" target="_blank">
+                <button>🖨️ Print Profile</button>
             </a>
-            <button class="back-button" onclick="showSection('dashboard-home')">
-                ⬅ Back to Menu
-            </button>
-        </section>
-
-        <section id="skills-section" class="section">
-            <h2>Registered Skills</h2>
-            <ul id="skills-list"></ul>
-            <button class="back-button" onclick="showSection('dashboard-home')">
-                ⬅ Back to Menu
-            </button>
-        </section>
-
-        <section id="update-skills-section" class="section">
-            <h2>Update Your Skills</h2>
-            <p>Select new skills or update your existing ones (Max: 3 skills).</p>
-
-            <div id="skill-options">
-                <label><input type="checkbox" value="Web Development"> Web Development</label>
-                <label><input type="checkbox" value="Graphic Design"> Graphic Design</label>
-                <label><input type="checkbox" value="Footwear Production">Footwear Production</label>
-                <label><input type="checkbox" value="Painting Making">Painting Making</label>
-                <label><input type="checkbox" value="Soap Making"> Soap Making</label>
-                <label><input type="checkbox" value="Perfume Production">Perfume Production</label>
-                  <label><input type="checkbox" value="Confectionery">Confectionaries</label>
-                  <label><input type="checkbox" value="CCTV Installation">CCTV Installation</label>
-                
-            </div>
-
-            <button onclick="updateSkills()">Update Skills</button>
-
-            <h3>Selected Skills:</h3>
-            <ul id="updated-skills-list"></ul>
-            <button class="back-button" onclick="showSection('dashboard-home')">
-                ⬅ Back to Menu
-            </button>
-        </section>
-
-         <section id="instructor-section" class="section">
-            <h2>Assigned Instructors</h2>
+            <a onclick="logoutUser()" class="logout-button">🚪 Logout</a>
+        </div>
         
-        <button onclick="showInstructorDetails()">Your Instructor</button>
-
-    <div id="instructor-details" style="display: none; margin-top: 20px;">
-        <h3>Assigned Instructor(s)</h3>
-        <ul id="instructor-list"></ul>
+        <!-- Content Area -->
+        <div class="content">
+            <!-- Dashboard Overview Section -->
+            <section id="dashboard-home" class="section active">
+                <h2 id="welcome-message">Welcome, Student!</h2>
+                <div class="dashboard-grid">
+                    <div class="dashboard-card" onclick="showSection('messages-section')">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Messages</h3>
+                    </div>
+                    <div class="dashboard-card" onclick="showSection('library-section')">
+                        <i class="fas fa-book"></i>
+                        <h3>Resource Library</h3>
+                    </div>
+                    <div class="dashboard-card" onclick="showSection('assignments-section')">
+                        <i class="fas fa-tasks"></i>
+                        <h3>Assignments</h3>
+                    </div>
+                    <div class="dashboard-card" onclick="showSection('upload-section')">
+                        <i class="fas fa-upload"></i>
+                        <h3>Upload Assignments</h3>
+                    </div>
+                    <div class="dashboard-card" onclick="showSection('forum-section')">
+                        <i class="fas fa-users"></i>
+                        <h3>Community Forum</h3>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Other Sections -->
+            <section id="results-section" class="section">
+                <h2>Check Results</h2>
+                <p id="result-message"></p>
+                <button class="back-button" onclick="showSection('dashboard-home')">⬅ Back to Menu</button>
+            </section>
+            
+            <section id="logbook-section" class="section">
+                <h2>Download Logbook</h2>
+                <a href="logbook.pdf" download="LOG_BOOK_GST_ENT_301.pdf">
+                    <button>Download Logbook</button>
+                </a>
+                <button class="back-button" onclick="showSection('dashboard-home')">⬅ Back to Menu</button>
+            </section>
+            
+            <section id="skills-section" class="section">
+                <h2>Registered Skills</h2>
+                <ul id="skills-list"></ul>
+                <button class="back-button" onclick="showSection('dashboard-home')">⬅ Back to Menu</button>
+            </section>
+            
+            <section id="update-skills-section" class="section">
+                <h2>Update Your Skills</h2>
+                <p>Select new skills or update your existing ones (Max: 3 skills).</p>
+                <div id="skill-options">
+                    <label><input type="checkbox" value="Web Development"> Web Development</label>
+                    <label><input type="checkbox" value="Graphic Design"> Graphic Design</label>
+                    <label><input type="checkbox" value="Footwear Production">Footwear Production</label>
+                    <label><input type="checkbox" value="Painting Making">Painting Making</label>
+                    <label><input type="checkbox" value="Soap Making"> Soap Making</label>
+                    <label><input type="checkbox" value="Perfume Production">Perfume Production</label>
+                    <label><input type="checkbox" value="Confectionery">Confectionery</label>
+                    <label><input type="checkbox" value="CCTV Installation">CCTV Installation</label>
+                </div>
+                <button onclick="updateSkills()">Update Skills</button>
+                <h3>Selected Skills:</h3>
+                <ul id="updated-skills-list"></ul>
+                <button class="back-button" onclick="showSection('dashboard-home')">⬅ Back to Menu</button>
+            </section>
+        </div>
     </div>
-              <button class="back-button" onclick="showSection('dashboard-home')">
-                ⬅ Back to Menu
-            </button>
-               </section>
-
-       
-
-        <section id="schedule-section" class="section">
-            <h2>Skill Schedules</h2>
-            <table id="schedule-table">
-                <thead>
-                    <tr>
-                        <th>Day</th>
-                        <th>Time</th>
-                        <th>Venue</th>
-                    </tr>
-                </thead>
-                <tbody id="schedule-body">
-                    <!-- Schedule will be inserted dynamically here -->
-                </tbody>
-            </table>
-            <button class="back-button" onclick="showSection('dashboard-home')">
-                ⬅ Back to Menu
-            </button>
-        </section>
+    
+    <script>
+        function showSection(sectionId) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(sectionId).classList.add('active');
+        }
         
-
-        <section id="profile-section" class="section">
-            <h2>Print Your Profile</h2>
-            <button onclick="printProfile()">Print</button>
-            <button class="back-button" onclick="showSection('dashboard-home')">
-                ⬅ Back to Menu
-            </button>
-        </section>
-    </div>
-</div>
-
-<!-- JavaScript Code (Placed before closing </body> tag for better performance) -->
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        loadExistingSkills();
-        loadSkills();
-        displayStudentName();
-    });
-    
-    // Function to Load Existing Skills from LocalStorage
-    function loadSkills() {
-    let studentData = JSON.parse(localStorage.getItem("loggedInStudent"));
-
-    if (studentData && studentData.skills) {
-        let skillsList = document.getElementById("skills-list");
-        skillsList.innerHTML = ""; // Clear previous list
-
-        studentData.skills.forEach(skill => {
-            let listItem = document.createElement("li");
-            listItem.textContent = skill;
-            skillsList.appendChild(listItem);
-        });
-    } else {
-        document.getElementById("skills-list").innerHTML = "<li>No skills registered.</li>";
-    }
-}
-
-    // Function to Update Skills and Reflect Changes in "Check Skills"
-    function updateSkills() {
-    let selectedSkills = [];
-    let checkboxes = document.querySelectorAll("#skill-options input[type='checkbox']:checked");
-
-    checkboxes.forEach((checkbox) => {
-        if (selectedSkills.length < 3) {
-            selectedSkills.push(checkbox.value);
-        } else {
-            checkbox.checked = false; // Prevent selecting more than 3
+        function logoutUser() {
+            localStorage.removeItem("loggedInStudent");
+            window.location.href = "index.html";
         }
-    });
-
-    if (selectedSkills.length !== 3) {
-        alert("Please select exactly 3 skills.");
-        return;
-    }
-
-    // Update the pre-encoded student details
-    let studentData = JSON.parse(localStorage.getItem("loggedInStudent"));
-    if (studentData) {
-        studentData.skills = selectedSkills;
-        localStorage.setItem("loggedInStudent", JSON.stringify(studentData));
-    }
-
-    // Refresh displayed skills
-    loadSkills();
-    alert("Skills updated successfully!");
-}
-function logoutUser() {
-    localStorage.removeItem("loggedInStudent"); // Clear stored session
-    window.location.href = "index.html"; // Redirect to the home page
-}
-
-    
-    // Function to Load Existing Skills into Update Section
-    function loadExistingSkills() {
-        let storedSkills = localStorage.getItem("studentSkills");
-        let checkboxes = document.querySelectorAll("#skill-options input[type='checkbox']");
-    
-        if (storedSkills) {
-            let skills = JSON.parse(storedSkills);
-            checkboxes.forEach((checkbox) => {
-                if (skills.includes(checkbox.value)) {
-                    checkbox.checked = true;
-                }
-            });
-            displayUpdatedSkills();
-        }
-    }
-    
-    // Function to Reflect Updated Skills in "Check Skills" Section
-    function displayUpdatedSkills() {
-        let skillsList = document.getElementById("skills-list");
-        skillsList.innerHTML = ""; // Clear previous list
-    
-        let skills = localStorage.getItem("studentSkills");
-    
-        if (skills) {
-            JSON.parse(skills).forEach((skill) => {
-                let listItem = document.createElement("li");
-                listItem.textContent = skill;
-                skillsList.appendChild(listItem);
-            });
-        } else {
-            skillsList.innerHTML = "<li>No skills selected.</li>";
-        }
-    }
-
-    document.addEventListener("DOMContentLoaded", function () {
-    let student = JSON.parse(localStorage.getItem("loggedInStudent"));
-    let instructors = JSON.parse(localStorage.getItem("assignedInstructors"));
-
-    if (student) {
-        document.getElementById("student-name").textContent = student.fullName;
-    }
-
-    window.showInstructorDetails = function () {
-        let instructorList = document.getElementById("instructor-list");
-        let instructorSection = document.getElementById("instructor-details");
-
-        if (instructors && instructors.length > 0) {
-            instructorList.innerHTML = instructors.map(instr => 
-                `<li><strong>${instr.name}</strong> - ${instr.skill} <br> 📧 ${instr.email}</li>`
-            ).join("");
-            instructorSection.style.display = "block";
-        } else {
-            instructorList.innerHTML = "<li>No instructor assigned.</li>";
-            instructorSection.style.display = "block";
-        }
-    };
-});
-
-    
-    // Function to Show/Hide Sections Dynamically
-    function showSection(sectionId) {
-        document.querySelectorAll('.section').forEach(section => {
-            section.classList.remove('active');
-        });
-    
-        document.getElementById(sectionId).classList.add('active');
-    
-        if (sectionId === "skills-section") {
-            loadSkills();
-        }
-    }
-    
-    // Load student name dynamically
-    function displayStudentName() {
-    const studentData = JSON.parse(localStorage.getItem("loggedInStudent"));
-    
-    if (studentData) {
-        document.getElementById("welcome-message").textContent = `Welcome, ${studentData.fullName}!`;
-    } else {
-        alert("No student data found! Redirecting to login...");
-        window.location.href = "student-login.html";
-    }
-}
-
     </script>
-    
 </body>
 </html>
