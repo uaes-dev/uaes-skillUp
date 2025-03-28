@@ -294,7 +294,7 @@
     function logoutStudent() {
     localStorage.removeItem("loggedInStudent"); // Clear student data
     alert("You have been logged out.");
-    window.location.href = "student-login.html"; // Redirect to login page
+    window.location.href = "index.html"; // Redirect to login page
 }
 
     
@@ -306,7 +306,7 @@
         document.getElementById("welcome-message").textContent = `Welcome, ${studentData.fullName}!`;
     } else {
         alert("No student data found! Redirecting to login...");
-        window.location.href = "index.html";
+        window.location.href = "student-login.html";
     }
 }
 
