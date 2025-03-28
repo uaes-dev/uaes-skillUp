@@ -40,7 +40,7 @@
                 <label for="password">Enter your Password</label>
                 <div class="password-container">
                     <input type="password" id="password" name="password" placeholder="Enter your Password" required>
-                    <img src="eye-off.png" id="togglePassword" class="eye-icon" alt="Show Password" onclick="togglePassword()">
+                    <img src="eye-off.png" id="togglePassword" class="eye-icon" alt="Show Password">
                 </div>
             </div>
 
@@ -57,44 +57,44 @@
     <script>
         function togglePassword() {
             let passwordField = document.getElementById("password");
-            let toggleIcon = document.getElementById("togglePassword");
-
+            let icon = document.querySelector(".toggle-password");
             if (passwordField.type === "password") {
                 passwordField.type = "text";
-                toggleIcon.src = "eye-on.png";  // Change icon to 'eye-on'
+                icon.classList.replace("fa-eye", "fa-eye-slash");
             } else {
                 passwordField.type = "password";
-                toggleIcon.src = "eye-off.png";  // Change icon to 'eye-off'
+                icon.classList.replace("fa-eye-slash", "fa-eye");
             }
         }
-
+    
         document.getElementById("loginForm").addEventListener("submit", function(event) {
             event.preventDefault();
-
+    
             let email = document.getElementById("email").value.trim().toLowerCase();
             let password = document.getElementById("password").value.trim();
-            let errorMessage = document.getElementById("login-error");
-
+            let errorMessage = document.getElementById("error-message");
+    
             // Predefined Student Details
             const student = {
-                fullName: "Samuel Osuji",
-                department: "Computer Science",
+                fullName: "Esther",
+                department: "Business Administration",
                 matric: "20221200021",
                 level: "300",
                 skills: ["Web Design", "Painting Making", "CCTV Installation"],
                 email: "student@gmail.com",
                 password: "student123"
             };
-
+    
             if (email === student.email && password === student.password) {
                 // Store student details in localStorage for the dashboard
                 localStorage.setItem("loggedInStudent", JSON.stringify(student));
                 window.location.href = "student-dashboard.html"; 
             } else {
                 errorMessage.textContent = "Invalid email or password!";
-                errorMessage.style.display = "block";
+                errorMessage.classList.remove("d-none");
             }
         });
     </script>
+    
 </body>
 </html>
