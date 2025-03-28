@@ -24,7 +24,7 @@
         <a href="student-profile.html" target="_blank">
             <button>🖨️ Print Profile</button>
         </a>
-        
+        <a onclick="logoutUser()" class="logout-button">🚪 Logout</a>
     </div>
 
     <!-- Content Area -->
@@ -240,6 +240,10 @@
     // Refresh displayed skills
     loadSkills();
     alert("Skills updated successfully!");
+}
+function logoutUser() {
+    localStorage.removeItem("loggedInStudent"); // Clear stored session
+    window.location.href = "index.html"; // Redirect to the home page
 }
 
     
