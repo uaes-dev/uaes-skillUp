@@ -108,6 +108,30 @@
             localStorage.removeItem("loggedInStudent");
             window.location.href = "index.html";
         }
+        document.addEventListener("DOMContentLoaded", function () {
+    let student = JSON.parse(localStorage.getItem("loggedInStudent"));
+    let instructors = JSON.parse(localStorage.getItem("assignedInstructors"));
+
+    if (student) {
+        document.getElementById("student-name").textContent = student.fullName;
+    }
+
+    window.showInstructorDetails = function () {
+        let instructorList = document.getElementById("instructor-list");
+        let instructorSection = document.getElementById("instructor-details");
+
+        if (instructors && instructors.length > 0) {
+            instructorList.innerHTML = instructors.map(instr => 
+                `<li><strong>${instr.name}</strong> - ${instr.skill} <br> 📧 ${instr.email}</li>`
+            ).join("");
+            instructorSection.style.display = "block";
+        } else {
+            instructorList.innerHTML = "<li>No instructor assigned.</li>";
+            instructorSection.style.display = "block";
+        }
+    };
+});
+
     </script>
 </body>
 </html>
