@@ -66,10 +66,10 @@
 
         if (passwordField.type === "password") {
             passwordField.type = "text";
-            icon.classList.replace("fa-eye", "fa-eye-slash"); // Change to "eye-off"
+            icon.classList.replace("fa-eye-slash", "fa-eye"); // Change to "eye-off"
         } else {
             passwordField.type = "password";
-            icon.classList.replace("fa-eye-slash", "fa-eye"); // Change back to "eye-on"
+            icon.classList.replace("fa-eye", "fa-eye-slash"); // Change back to "eye-on"
         }
     });
 
