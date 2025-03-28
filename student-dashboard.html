@@ -295,7 +295,7 @@
     const studentData = JSON.parse(localStorage.getItem("loggedInStudent"));
     
     if (studentData) {
-        document.getElementById("welcome-message").textContent = `Welcome, ${studentData.fullName}!`;
+        document.getElementById("welcome-message").textContent = `Welcome, Student!`;
     } else {
         alert("No student data found! Redirecting to login...");
         window.location.href = "student-login.html";
