@@ -24,6 +24,7 @@
         <a href="student-profile.html" target="_blank">
             <button>🖨️ Print Profile</button>
         </a>
+        <a href="#" onclick="logoutStudent()">🚪 Logout</a>
         
     </div>
 
@@ -289,6 +290,13 @@
             loadSkills();
         }
     }
+ function logoutStudent() {
+    localStorage.removeItem("loggedInStudent"); // Clear student data
+    alert("You have been logged out.");
+    window.location.href = "index.html"; // Redirect to login page
+}
+
+    
     
     // Load student name dynamically
     function displayStudentName() {
