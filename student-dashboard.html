@@ -155,14 +155,6 @@
                 ⬅ Back to Menu
             </button>
         </section>
-        <section id="instructor-section" class="section">
-    <h2>Your Instructors</h2>
-    <ul id="instructor-list"></ul>
-    <button class="back-button" onclick="showSection('dashboard-home')">
-        ⬅ Back to Dashboard
-    </button>
-</section>
-
 
        
 
@@ -198,75 +190,125 @@
 
 <!-- JavaScript Code (Placed before closing </body> tag for better performance) -->
 <script>
-   <script>
     document.addEventListener("DOMContentLoaded", function() {
         loadExistingSkills();
         loadSkills();
         displayStudentName();
-        loadInstructors(); // Load instructors when page loads
     });
-
+    
     // Function to Load Existing Skills from LocalStorage
     function loadSkills() {
-        let studentData = JSON.parse(localStorage.getItem("loggedInStudent"));
+    let studentData = JSON.parse(localStorage.getItem("loggedInStudent"));
 
-        if (studentData && studentData.skills) {
-            let skillsList = document.getElementById("skills-list");
-            skillsList.innerHTML = ""; // Clear previous list
+    if (studentData && studentData.skills) {
+        let skillsList = document.getElementById("skills-list");
+        skillsList.innerHTML = ""; // Clear previous list
 
-            studentData.skills.forEach(skill => {
+        studentData.skills.forEach(skill => {
+            let listItem = document.createElement("li");
+            listItem.textContent = skill;
+            skillsList.appendChild(listItem);
+        });
+    } else {
+        document.getElementById("skills-list").innerHTML = "<li>No skills registered.</li>";
+    }
+}
+
+    // Function to Update Skills and Reflect Changes in "Check Skills"
+    function updateSkills() {
+    let selectedSkills = [];
+    let checkboxes = document.querySelectorAll("#skill-options input[type='checkbox']:checked");
+
+    checkboxes.forEach((checkbox) => {
+        if (selectedSkills.length < 3) {
+            selectedSkills.push(checkbox.value);
+        } else {
+            checkbox.checked = false; // Prevent selecting more than 3
+        }
+    });
+
+    if (selectedSkills.length !== 3) {
+        alert("Please select exactly 3 skills.");
+        return;
+    }
+
+    // Update the pre-encoded student details
+    let studentData = JSON.parse(localStorage.getItem("loggedInStudent"));
+    if (studentData) {
+        studentData.skills = selectedSkills;
+        localStorage.setItem("loggedInStudent", JSON.stringify(studentData));
+    }
+
+    // Refresh displayed skills
+    loadSkills();
+    alert("Skills updated successfully!");
+}
+
+    
+    // Function to Load Existing Skills into Update Section
+    function loadExistingSkills() {
+        let storedSkills = localStorage.getItem("studentSkills");
+        let checkboxes = document.querySelectorAll("#skill-options input[type='checkbox']");
+    
+        if (storedSkills) {
+            let skills = JSON.parse(storedSkills);
+            checkboxes.forEach((checkbox) => {
+                if (skills.includes(checkbox.value)) {
+                    checkbox.checked = true;
+                }
+            });
+            displayUpdatedSkills();
+        }
+    }
+    
+    // Function to Reflect Updated Skills in "Check Skills" Section
+    function displayUpdatedSkills() {
+        let skillsList = document.getElementById("skills-list");
+        skillsList.innerHTML = ""; // Clear previous list
+    
+        let skills = localStorage.getItem("studentSkills");
+    
+        if (skills) {
+            JSON.parse(skills).forEach((skill) => {
                 let listItem = document.createElement("li");
                 listItem.textContent = skill;
                 skillsList.appendChild(listItem);
             });
         } else {
-            document.getElementById("skills-list").innerHTML = "<li>No skills registered.</li>";
+            skillsList.innerHTML = "<li>No skills selected.</li>";
         }
     }
-
-    // Function to load and display instructors based on selected skills
-    const skillInstructors = {
-        "Web Development": { name: "Mr. Iyke", email: "iyke@gmail.com" },
-        "Footwear Production": { name: "Mr. John", email: "john@gmail.com" },
-        "Paint Production": { name: "Mr. Williams", email: "willy@gmail.com" },
-        "Confectionery": { name: "Mrs. Chioma", email: "chy12@gmail.com" },
-        "Computer Networking": { name: "Mr. Donald", email: "dona@gmail.com" }
-    };
-
-    function loadInstructors() {
-        let studentData = JSON.parse(localStorage.getItem("loggedInStudent"));
-
-        if (studentData && studentData.skills) {
-            let instructorList = document.getElementById("instructor-list");
-            instructorList.innerHTML = ""; // Clear previous data
-
-            studentData.skills.forEach(skill => {
-                let instructor = skillInstructors[skill] || { name: "Not Assigned", email: "N/A" };
-                let listItem = document.createElement("li");
-                listItem.innerHTML = `<strong>${skill}:</strong> ${instructor.name} - <a href="mailto:${instructor.email}">${instructor.email}</a>`;
-                instructorList.appendChild(listItem);
-            });
-        } else {
-            document.getElementById("instructor-list").innerHTML = "<li>No instructors assigned.</li>";
+    
+    // Function to Show/Hide Sections Dynamically
+    function showSection(sectionId) {
+        document.querySelectorAll('.section').forEach(section => {
+            section.classList.remove('active');
+        });
+    
+        document.getElementById(sectionId).classList.add('active');
+    
+        if (sectionId === "skills-section") {
+            loadSkills();
         }
     }
-
     function logoutStudent() {
-        localStorage.removeItem("loggedInStudent"); // Clear student data
-        alert("You have been logged out.");
-        window.location.href = "index.html"; // Redirect to login page
-    }
+    localStorage.removeItem("loggedInStudent"); // Clear student data
+    alert("You have been logged out.");
+    window.location.href = "index.html"; // Redirect to login page
+}
 
+    
+    // Load student name dynamically
     function displayStudentName() {
-        const studentData = JSON.parse(localStorage.getItem("loggedInStudent"));
-
-        if (studentData) {
-            document.getElementById("welcome-message").textContent = `Welcome, ${studentData.fullName}!`;
-        } else {
-            alert("No student data found! Redirecting to login...");
-            window.location.href = "student-login.html";
-        }
+    const studentData = JSON.parse(localStorage.getItem("loggedInStudent"));
+    
+    if (studentData) {
+        document.getElementById("welcome-message").textContent = Welcome, ${studentData.fullName}!;
+    } else {
+        alert("No student data found! Redirecting to login...");
+        window.location.href = "student-login.html";
     }
+}
 
     </script>
     
