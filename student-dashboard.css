@@ -377,4 +377,19 @@ ul li {
 .back-button:hover {
     background-color: #0056b3;
 }
+.logout-button {
+    display: block;
+    padding: 10px;
+    margin-top: 20px;
+    color: white;
+    background-color: red;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.logout-button:hover {
+    background-color: darkred;
+}
 
