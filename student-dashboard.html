@@ -198,127 +198,7 @@
 
 <!-- JavaScript Code (Placed before closing </body> tag for better performance) -->
 <script>
-    document.addEventListener("DOMContentLoaded", function() {
-        loadExistingSkills();
-        loadSkills();
-        displayStudentName();
-    });
-    
-    // Function to Load Existing Skills from LocalStorage
-    function loadSkills() {
-    let studentData = JSON.parse(localStorage.getItem("loggedInStudent"));
-
-    if (studentData && studentData.skills) {
-        let skillsList = document.getElementById("skills-list");
-        skillsList.innerHTML = ""; // Clear previous list
-
-        studentData.skills.forEach(skill => {
-            let listItem = document.createElement("li");
-            listItem.textContent = skill;
-            skillsList.appendChild(listItem);
-        });
-    } else {
-        document.getElementById("skills-list").innerHTML = "<li>No skills registered.</li>";
-    }
-}
-
-    // Function to Update Skills and Reflect Changes in "Check Skills"
-    function updateSkills() {
-    let selectedSkills = [];
-    let checkboxes = document.querySelectorAll("#skill-options input[type='checkbox']:checked");
-
-    checkboxes.forEach((checkbox) => {
-        if (selectedSkills.length < 3) {
-            selectedSkills.push(checkbox.value);
-        } else {
-            checkbox.checked = false; // Prevent selecting more than 3
-        }
-    });
-
-    if (selectedSkills.length !== 3) {
-        alert("Please select exactly 3 skills.");
-        return;
-    }
-
-    // Update the pre-encoded student details
-    let studentData = JSON.parse(localStorage.getItem("loggedInStudent"));
-    if (studentData) {
-        studentData.skills = selectedSkills;
-        localStorage.setItem("loggedInStudent", JSON.stringify(studentData));
-    }
-
-    // Refresh displayed skills
-    loadSkills();
-    alert("Skills updated successfully!");
-}
-
-    
-    // Function to Load Existing Skills into Update Section
-    function loadExistingSkills() {
-        let storedSkills = localStorage.getItem("studentSkills");
-        let checkboxes = document.querySelectorAll("#skill-options input[type='checkbox']");
-    
-        if (storedSkills) {
-            let skills = JSON.parse(storedSkills);
-            checkboxes.forEach((checkbox) => {
-                if (skills.includes(checkbox.value)) {
-                    checkbox.checked = true;
-                }
-            });
-            displayUpdatedSkills();
-        }
-    }
-    
-    // Function to Reflect Updated Skills in "Check Skills" Section
-    function displayUpdatedSkills() {
-        let skillsList = document.getElementById("skills-list");
-        skillsList.innerHTML = ""; // Clear previous list
-    
-        let skills = localStorage.getItem("studentSkills");
-    
-        if (skills) {
-            JSON.parse(skills).forEach((skill) => {
-                let listItem = document.createElement("li");
-                listItem.textContent = skill;
-                skillsList.appendChild(listItem);
-            });
-        } else {
-            skillsList.innerHTML = "<li>No skills selected.</li>";
-        }
-    }
-    
-    // Function to Show/Hide Sections Dynamically
-    function showSection(sectionId) {
-        document.querySelectorAll('.section').forEach(section => {
-            section.classList.remove('active');
-        });
-    
-        document.getElementById(sectionId).classList.add('active');
-    
-        if (sectionId === "skills-section") {
-            loadSkills();
-        }
-    }
-    function logoutStudent() {
-    localStorage.removeItem("loggedInStudent"); // Clear student data
-    alert("You have been logged out.");
-    window.location.href = "index.html"; // Redirect to login page
-}
-
-    
-    // Load student name dynamically
-    function displayStudentName() {
-    const studentData = JSON.parse(localStorage.getItem("loggedInStudent"));
-    
-    if (studentData) {
-        document.getElementById("welcome-message").textContent = `Welcome, ${studentData.fullName}!`;
-    } else {
-        alert("No student data found! Redirecting to login...");
-        window.location.href = "student-login.html";
-    }
-}
-<script>
- <script>
+   <script>
     document.addEventListener("DOMContentLoaded", function() {
         loadExistingSkills();
         loadSkills();
@@ -387,9 +267,6 @@
             window.location.href = "student-login.html";
         }
     }
-</script>
-
-</script>
 
     </script>
     
