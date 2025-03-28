@@ -318,6 +318,7 @@
     }
 }
 <script>
+ <script>
     document.addEventListener("DOMContentLoaded", function() {
         loadExistingSkills();
         loadSkills();
@@ -325,7 +326,25 @@
         loadInstructors(); // Load instructors when page loads
     });
 
-    // Pre-encoded skill-to-instructor mapping with names and emails
+    // Function to Load Existing Skills from LocalStorage
+    function loadSkills() {
+        let studentData = JSON.parse(localStorage.getItem("loggedInStudent"));
+
+        if (studentData && studentData.skills) {
+            let skillsList = document.getElementById("skills-list");
+            skillsList.innerHTML = ""; // Clear previous list
+
+            studentData.skills.forEach(skill => {
+                let listItem = document.createElement("li");
+                listItem.textContent = skill;
+                skillsList.appendChild(listItem);
+            });
+        } else {
+            document.getElementById("skills-list").innerHTML = "<li>No skills registered.</li>";
+        }
+    }
+
+    // Function to load and display instructors based on selected skills
     const skillInstructors = {
         "Web Development": { name: "Mr. Iyke", email: "iyke@gmail.com" },
         "Footwear Production": { name: "Mr. John", email: "john@gmail.com" },
@@ -334,7 +353,6 @@
         "Computer Networking": { name: "Mr. Donald", email: "dona@gmail.com" }
     };
 
-    // Function to load and display instructors based on selected skills
     function loadInstructors() {
         let studentData = JSON.parse(localStorage.getItem("loggedInStudent"));
 
@@ -352,6 +370,25 @@
             document.getElementById("instructor-list").innerHTML = "<li>No instructors assigned.</li>";
         }
     }
+
+    function logoutStudent() {
+        localStorage.removeItem("loggedInStudent"); // Clear student data
+        alert("You have been logged out.");
+        window.location.href = "index.html"; // Redirect to login page
+    }
+
+    function displayStudentName() {
+        const studentData = JSON.parse(localStorage.getItem("loggedInStudent"));
+
+        if (studentData) {
+            document.getElementById("welcome-message").textContent = `Welcome, ${studentData.fullName}!`;
+        } else {
+            alert("No student data found! Redirecting to login...");
+            window.location.href = "student-login.html";
+        }
+    }
+</script>
+
 </script>
 
     </script>
