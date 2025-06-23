@@ -101,8 +101,8 @@ body {
 .hero {
     background-image: url(abcdc.jpg);
     background-repeat: no-repeat;
-    background-attachment: fixed;
-
+    background-size: cover;          /* Ensures image fills container */
+    background-position: center;     /* Keeps focus centered */
     color: white;
     padding: 50px 20px;
     min-height: 70vh;
@@ -110,7 +110,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 80px; /* Prevents content from overlapping navbar */
+    margin-top: 80px;
 }
 
 .hero-content {
