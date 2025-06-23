@@ -101,6 +101,7 @@ body {
 .hero {
     background-image: url(abcdc.jpg);
     background-repeat: no-repeat;
+    background-attachment: fixed;
 
     color: white;
     padding: 50px 20px;
