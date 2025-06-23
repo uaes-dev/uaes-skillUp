@@ -3,12 +3,14 @@ body {
     font-family: Arial, sans-serif;
     background-image: url(images.jpg);
     background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 /* Login Container */
@@ -47,6 +49,7 @@ input {
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
+    box-sizing: border-box;
 }
 
 /* Password Input with Eye Icon */
@@ -75,6 +78,8 @@ input {
     justify-content: space-between;
     font-size: 14px;
     margin-bottom: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
 }
 
 .remember-forgot a {
@@ -112,15 +117,46 @@ button:hover {
     margin-top: 10px;
 }
 
-/* Responsive Design */
+/* Tablet Responsive */
+@media (max-width: 768px) {
+    .login-container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    input, button {
+        font-size: 15px;
+        padding: 10px;
+    }
+
+    .remember-forgot {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+/* Mobile Responsive */
 @media (max-width: 480px) {
     .login-container {
         width: 95%;
-        padding: 20px;
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 18px;
     }
 
     input, button {
         font-size: 14px;
-        padding: 10px;
+        padding: 8px;
+    }
+
+    .eye-icon {
+        width: 16px;
+        height: 16px;
     }
 }
