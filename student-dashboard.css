@@ -51,6 +51,7 @@ body {
     flex-grow: 1;
     padding: 20px;
     background-image: url(content.avif);
+   background-repeat: no-repeat;
     overflow-y: auto;
 }
 
