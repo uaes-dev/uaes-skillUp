@@ -75,32 +75,44 @@
 
 
         document.getElementById("loginForm").addEventListener("submit", function(event) {
-            event.preventDefault();
-    
-            let email = document.getElementById("email").value.trim().toLowerCase();
-            let password = document.getElementById("password").value.trim();
-            let errorMessage = document.getElementById("error-message");
-    
-            // Predefined Student Details
-            const student = {
-                fullName: "Samuel Osuji",
-                department: "Computer Science",
-                matric: "20221200021",
-                level: "300",
-                skills: ["Web Design", "Footwear", "Computer Networking"],
-                email: "student@gmail.com",
-                password: "student123"
-            };
-    
-            if (email === student.email && password === student.password) {
-                // Store student details in localStorage for the dashboard
-                localStorage.setItem("loggedInStudent", JSON.stringify(student));
-                window.location.href = "student-dashboard.html"; 
-            } else {
-                errorMessage.textContent = "Invalid email or password!";
-                errorMessage.classList.remove("d-none");
-            }
-        });
+    event.preventDefault();
+
+    let email = document.getElementById("email").value.trim().toLowerCase();
+    let password = document.getElementById("password").value.trim();
+    let errorMessage = document.getElementById("login-error");
+
+    const student = {
+        fullName: "Samuel Osuji",
+        department: "Computer Science",
+        matric: "20221200021",
+        level: "300",
+        skills: ["Web Design", "Footwear", "Computer Networking"],
+        email: "student@gmail.com",
+        password: "student123"
+    };
+
+    if (email === student.email && password === student.password) {
+        // Store student details for student dashboard
+        localStorage.setItem("loggedInStudent", JSON.stringify(student));
+
+        // Save to registeredStudents list
+        let registeredStudents = JSON.parse(localStorage.getItem("registeredStudents")) || [];
+        
+        // Prevent duplicate entry
+        if (!registeredStudents.some(s => s.email === student.email)) {
+            registeredStudents.push({
+                name: student.fullName,
+                skills: student.skills
+            });
+            localStorage.setItem("registeredStudents", JSON.stringify(registeredStudents));
+        }
+
+        window.location.href = "student-dashboard.html"; 
+    } else {
+        errorMessage.style.display = "block";
+    }
+});
+
     </script>
     
 </body>
