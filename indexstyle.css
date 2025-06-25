@@ -36,6 +36,7 @@ body {
 .nav-title {
     font-size: 20px;
     font-weight: bold;
+    align-text: left;
     color: green;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
